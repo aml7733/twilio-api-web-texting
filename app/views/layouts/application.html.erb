@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <% if flash[:message] %>
+      <%= render partial: "layouts/messages" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

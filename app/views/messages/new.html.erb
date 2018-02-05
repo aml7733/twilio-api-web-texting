@@ -1,0 +1,15 @@
+<h2>Welcome!</h2>
+<h4>Please enter your information below:</h4>
+
+<%= form_for @message do |f| %>
+  <label for="from_name">Name:</label>
+  <%= f.text_field :from_name %>
+  <br>
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number %>
+  <br>
+  <%= f.label :text %>
+  <%= f.text_area :text %>
+  <br>
+  <%= f.submit %>
+<% end %>
