@@ -2,16 +2,18 @@ require 'twilio-ruby'
 require 'global_phone'
 
 class MessagesController < ApplicationController
+  before_action :find_message, only: [:show] #Could have just put logic in Show action, but this allows later features (edit/update/destroy) to quickly find a message.
+
   def new
     @message = Message.new
   end
 
   def create
-    byebug
     @message = Message.new(params.require(:message).permit(:name, :phone_number, :text))
-
+    @message.phone_number = GlobalPhone.normalize(@message.phone_number)      #Re-writes phone number as E.164 format
     if @message.save
-      send(@message.phone_number, @message.text)
+      # send_text_message(@message.phone_number, @message.text)
+      byebug
       redirect_to message_path(@message), alert: "Message successfully sent."
     else
       render :new, alert: "There was a problem with the information you entered.  Please try again."
@@ -27,10 +29,16 @@ class MessagesController < ApplicationController
       @twilio_number = ENV['TWILIO_PHONE_NUMBER']
       @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
 
-      message = @client.account.messages.create(
+      new_message = @client.messages.create(
         from: @twilio_number,
         to: phone_number,
         body: text_message
       )
+      #Note: send message to Twilio, guides say line 32 should read
+      # @client.messages.account.create, but I got a no method error
+    end
+
+    def find_message
+      @message = Message.find_by(id: params[:id])
     end
 end

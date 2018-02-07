@@ -31,7 +31,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'dotenv'
 gem 'twilio-ruby', '~> 5.6.2'
 gem 'global_phone'
 gem 'global_phone_dbgen'
@@ -41,6 +40,7 @@ gem 'global_phone_dbgen'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'dotenv-rails'
   gem 'byebug', platform: :mri
 end
 
