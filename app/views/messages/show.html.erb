@@ -1,5 +1,3 @@
-<h2>Here's the data from the sent text:</h2>
-<h3>Name: <%= @message.name %></h3>
-<h3>Phone Number: <%= @message.phone_number %></h3>
-<h3>Text:</h3>
-<p><%= @message.text%></p>
+<h2>Here's the data from your conversation between <%= ENV["TWILIO_PHONE_NUMBER"] %> and <%= @conversation.phone_number %>:</h2>
+
+<%= render partial: "message", collection: @messages %>
