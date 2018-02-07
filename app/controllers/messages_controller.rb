@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def create
     byebug
-    @message = Message.new(params.require(:message).permit(:from_name, :phone_number, :text))
+    @message = Message.new(params.require(:message).permit(:name, :phone_number, :text))
 
     if @message.save
       redirect_to (MESSAGE_SENT_PATH), alert: "Message successfully saved."

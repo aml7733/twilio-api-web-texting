@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20180205033030) do
 
   create_table "messages", force: :cascade do |t|
-    t.string   "from_name"
+    t.string   "name"
     t.string   "phone_number"
     t.text     "text"
     t.datetime "created_at",   null: false
