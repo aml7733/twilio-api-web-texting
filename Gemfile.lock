@@ -58,6 +58,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     global_phone (1.0.1)
+    global_phone_dbgen (1.0.0)
+      nokogiri (~> 1.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.3)
@@ -173,6 +175,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   dotenv
   global_phone
+  global_phone_dbgen
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

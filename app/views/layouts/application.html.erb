@@ -1,4 +1,4 @@
-om cd <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>CtmCodingExercise</title>
@@ -9,7 +9,7 @@ om cd <!DOCTYPE html>
   </head>
 
   <body>
-    <% if flash[:message] %>
+    <% if flash[:alert] %>
       <%= render partial: "layouts/messages" %>
     <% end %>
     <%= yield %>

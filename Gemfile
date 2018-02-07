@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv'
 gem 'twilio-ruby', '~> 5.6.2'
 gem 'global_phone'
+gem 'global_phone_dbgen'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
