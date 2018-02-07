@@ -2,7 +2,9 @@ require 'twilio-ruby'
 require 'global_phone'
 
 class MessagesController < ApplicationController
-  before_action :find_message, only: [:show] #Could have just put logic in Show action, but this allows later features (edit/update/destroy) to quickly find a message.
+  before_action :find_message, only: [:show]
+  #Could have just put logic in show action, but this allows later
+  #features (edit/update/destroy) to quickly find a message.
 
   def new
     @message = Message.new
@@ -10,15 +12,14 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(params.require(:message).permit(:name, :phone_number, :text))
-    @message.phone_number = GlobalPhone.normalize(@message.phone_number)      #Re-writes phone number as E.164 format
+    @message.phone_number = GlobalPhone.normalize(@message.phone_number)      #Re-writes phone number as E.164 format, acceptable for twilio client
+
     if @message.save
       # send_text_message(@message.phone_number, @message.text)
-      byebug
       redirect_to message_path(@message), alert: "Message successfully sent."
     else
       render :new, alert: "There was a problem with the information you entered.  Please try again."
     end
-
   end
 
   def show
