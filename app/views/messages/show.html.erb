@@ -1,7 +1,10 @@
-<h2>Here's the data from your conversation between <%= ENV["TWILIO_PHONE_NUMBER"] %> and <%= @conversation.phone_number %>:</h2>
-
-<ul id="messageList">
-  <%= render partial: "message", collection: @messages %>
-</ul>
-
-<button type="button" name="button" id="refresh">See if you have a reply!</button>
+<div class="container">
+  <div class="jumbotron">
+    <h3 class="display-3">Conversation between Twilio Number %> and <%= @conversation.phone_number %></h3>
+  </div>
+  <div id="messageList" class="list-group">
+    <%= render partial: "message", collection: @messages %>
+  </div>
+  <br>
+  <button type="button" name="button" class="btn btn-lg btn-primary">See if you have a reply!</button>
+</div> <!-- close container -->

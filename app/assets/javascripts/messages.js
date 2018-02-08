@@ -28,7 +28,10 @@ function renderMessages(response) {
 }
 
 function populateHTML(messageObject) {
-  return `<br><li>${messageObject.name}</li><li><p>${messageObject.text}</p></li>`;
+  return `<div class="messageBubble">
+    <div class="name">${messageObject.name}</div>
+    <div class="text">${messageObject.text}</div>
+  </div>`;
 }
 
 $(document).ready(attachListener)

@@ -19,9 +19,10 @@ class MessagesController < ApplicationController
 
     if @message.save
       send_text_message(@message.phone_number, @message.text)
-      redirect_to message_path(@message), alert: "Message successfully sent."
+      redirect_to "/conversations/#{@message.conversation.id}", alert: "Message successfully sent."
     else
-      render :new, alert: "There was a problem with the information you entered.  Please try again."
+      flash.now[:alert] = "There was a problem with the information you entered.  Please try again."
+      render :new
     end
   end
 
