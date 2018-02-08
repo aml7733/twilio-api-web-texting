@@ -1,15 +1,15 @@
-<h2>Welcome!</h2>
-<h4>Please enter your information below:</h4>
+<div class="container">
 
-<%= form_for @message do |f| %>
-  <label for="name">Name:</label>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_number %>
-  <br>
-  <%= f.label :text %>
-  <%= f.text_area :text %>
-  <br>
-  <%= f.submit %>
-<% end %>
+
+  <%= form_for @message, html: {class: "form-create"} do |f| %>
+    <h2>Welcome to Online SMS</h2>
+    <p>To send SMS, enter your information below:</p>
+    <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    <br>
+    <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+    <br>
+    <%= f.text_area :text, class: "form-control", placeholder: "Text goes here" %>
+    <br>
+    <%= f.submit class: "btn btn-lg btn-primary"%>
+  <% end %>
+</div>

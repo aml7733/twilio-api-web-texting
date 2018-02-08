@@ -3,3 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.form-create {
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
