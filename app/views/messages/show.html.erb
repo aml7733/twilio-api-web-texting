@@ -1,3 +1,7 @@
 <h2>Here's the data from your conversation between <%= ENV["TWILIO_PHONE_NUMBER"] %> and <%= @conversation.phone_number %>:</h2>
 
-<%= render partial: "message", collection: @messages %>
+<ul id="messageList">
+  <%= render partial: "message", collection: @messages %>
+</ul>
+
+<button type="button" name="button" id="refresh">Reload Data</button>

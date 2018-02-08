@@ -26,7 +26,10 @@ class MessagesController < ApplicationController
   end
 
   def show
-
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @messages }
+    end
   end
 
   def receive_message
@@ -74,8 +77,8 @@ class MessagesController < ApplicationController
         to: phone_number,
         body: text_message
       )
-      #Note: send message to Twilio, guides say create line should read
-      # @client.messages.account.create, but I got a no method error
+      #Note: I need to send message to Twilio, guides say create line should
+      # read @client.messages.account.create, but I got a no method error
     end
 
     def load_twilio_client
