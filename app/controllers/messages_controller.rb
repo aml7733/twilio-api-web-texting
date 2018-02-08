@@ -5,10 +5,10 @@ class MessagesController < ApplicationController
   before_action :find_conversation, only: [:show]
   skip_before_action :verify_authenticity_token
 
-  # Could have just put find_conversation logic in show action, but this allows
-  # later features (edit/update/destroy) to quickly find a message.
-  # protect_from_forgery line was necessary to overcome testing problem
-  # where triggered get request couldn't verify CSRF token
+  # Could have just put find_conversation logic in show action, but
+  # this allows later features (edit/update/destroy) to quickly find a
+  # message. skip_before_action was necessary to overcome testing problem
+  # where triggered get request couldn't verify CSRF token.
 
   def new
     @message = Message.new
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
   def receive_message
     # Given the nature of the assignment, I think it's not necessary now to
     # validate message params from Twilio's api.  They should be constant,
-    # until the api is updated.  Validation here may be necessary in the
+    # unless the api is updated.  Validation here may be necessary in the
     # future to prevent malicious attempts to edit the database.
 
     body = params["Body"]
@@ -45,8 +45,7 @@ class MessagesController < ApplicationController
     @conversation.messages << @message
     @message.save
 
-    byebug
-    ##### If confirmation of saved reply necessary #####
+    ### If confirmation of saved reply necessary ###
     # load_twilio_client
     #
     # new_message = @client.messages.create(
@@ -77,8 +76,6 @@ class MessagesController < ApplicationController
         to: phone_number,
         body: text_message
       )
-      #Note: I need to send message to Twilio, guides say create line should
-      # read @client.messages.account.create, but I got a no method error
     end
 
     def load_twilio_client

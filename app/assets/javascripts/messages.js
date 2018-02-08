@@ -9,22 +9,26 @@ class Message {
 function  attachListener() {
   $("button#refresh").on("click", function(event) {
     event.preventDefault();
-    $.getJSON('/1.json', function(data) {
-      debugger
+    $.getJSON('/messages/1.json', function(data) {
       renderMessages(data)
     })
   })
 }
 
 function renderMessages(response) {
-  response.messages.forEach((jsonMessage) => {
-    var newMessage = new Message(jsonMessage.name, jsonMessage.phone_number, jsonMessage.text)
-    $("#messageList").append(populateHTML(newMessage))
-  })
+  // If the number of messages already populated is equal to the number of
+  // messages in the json response, no need to add HTML element.
+  var numMessages = $(".text").length
+  if (numMessages < response.length) {
+    for (var i = numMessages; i < response.length; i++) {
+      var messageObject = new Message(response[i].name, response[i].phone_number, response[i].text)
+      $("#messageList").append(populateHTML(messageObject))
+    }
+  }
 }
 
 function populateHTML(messageObject) {
-  return "<br><li><%= messageObject.name %></li><li><p><%= messageObject.text %></p></li>";
+  return `<br><li>${messageObject.name}</li><li><p>${messageObject.text}</p></li>`;
 }
 
 $(document).ready(attachListener)
